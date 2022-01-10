@@ -11,4 +11,16 @@ class ObservationRepository(private val observationDAO: ObservationDAO) {
     suspend fun addObservation(observation: Observation){
         observationDAO.addObservation(observation)
     }
+
+    suspend fun updateObservation(observation: Observation){
+        observationDAO.updateObservation(observation)
+    }
+
+    suspend fun deleteObservation(observation: Observation){
+        observationDAO.deleteObservation(observation)
+    }
+
+    suspend fun deleteAllObservations(){
+        observationDAO.deleteAllObservations()
+    }
 }

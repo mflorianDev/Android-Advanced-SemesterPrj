@@ -12,9 +12,34 @@
     <string name="newObservationDate">Date</string>
     <string name="newObservationLocation">Location</string>
     <string name="newObservationNotes">Notes</string>
-    <string name="saveBtn">Save</string>
-    <string name="backBtn">Back</string>
-    <string name="savedToast">new entry saved</string>
+    <string name="saveBtnNewObservation">Save</string>
+    <string name="savedToastNewObservation">Successfully added!</string>
+    <string name="saveErrorToastNewObservation">Please fill out all fields.</string>
+
+    <!-- update fragment -->
+    <string name="updateObservation">Update Observation</string>
+    <string name="updateObservationTitle">Title</string>
+    <string name="updateObservationDate">Date</string>
+    <string name="updateObservationLocation">Location</string>
+    <string name="updateObservationNotes">Notes</string>
+    <string name="updateBtnUpdateObservation">Update</string>
+    <string name="updatedToastUpdateObservation">Successfully updated!</string>
+    <string name="updateErrorToastUpdateObservation">Please fill out all fields.</string>
+    <!-- update fragment: delete menu -->
+    <string name="deleteMenuTitle">Delete Observation</string>
+    <string name="deleteMenuMessage">Are you sure?</string>
+    <string name="deleteMenuTextYes">Yes</string>
+    <string name="deleteMenuTextNo">No</string>
+    <string name="deleteObservationConfirmationToast">Successfully deleted</string>
+
+    <!-- list fragment: delete menu -->
+    <string name="listDeleteMenuTitle">Delete All Observation</string>
+    <string name="listDeleteMenuMessage">Are you sure you want to delete ALL observations?</string>
+    <string name="listDeleteMenuTextYes">Yes</string>
+    <string name="listDeleteMenuTextNo">No</string>
+    <string name="listDeleteObservationsConfirmationToast">Successfully deleted all observations</string>
+
+
 
     <!-- weather fragment -->
 

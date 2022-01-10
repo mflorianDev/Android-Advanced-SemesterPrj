@@ -4,11 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.add.AddFragment"
+    tools:context=".fragments.update.UpdateFragment"
     android:background="@color/green2">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/newObservationCardView"
+        android:id="@+id/updateObservationCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/newObservation"
+                android:text="@string/updateObservation"
                 android:textColor="#363A43"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
@@ -40,10 +40,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etTitle"
+                    android:id="@+id/updateEtTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/newObservationTitle"
+                    android:hint="@string/updateObservationTitle"
                     android:textColor="#363A43"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -55,10 +55,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etDate"
+                    android:id="@+id/updateEtDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/newObservationDate"
+                    android:hint="@string/updateObservationDate"
                     android:textColor="#363A43"
                     android:inputType="text"
                     android:focusable="false"
@@ -72,10 +72,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etLocation"
+                    android:id="@+id/updateEtLocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/newObservationLocation"
+                    android:hint="@string/updateObservationLocation"
                     android:textColor="#363A43"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -87,10 +87,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/etNotes"
+                    android:id="@+id/updateEtNotes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/newObservationNotes"
+                    android:hint="@string/updateObservationNotes"
                     android:inputType="textMultiLine"
                     android:gravity="start|top" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,10 +100,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="24dp"
-                android:text="@string/saveBtnNewObservation"
+                android:text="@string/updateBtnUpdateObservation"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 </FrameLayout>

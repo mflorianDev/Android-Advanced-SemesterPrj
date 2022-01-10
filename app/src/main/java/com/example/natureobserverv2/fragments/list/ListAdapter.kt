@@ -3,6 +3,7 @@ package com.example.natureobserverv2.fragments.list
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.natureobserverv2.R
 import com.example.natureobserverv2.data.Observation
@@ -24,6 +25,11 @@ class ListAdapter: RecyclerView.Adapter<ListViewHolder>() {
         holder.itemView.tvListTitle.text = currentListItem.title.toString()
         holder.itemView.tvListLocation.text = currentListItem.location.toString()
         holder.itemView.tvListNotes.text = currentListItem.notes.toString()
+
+        holder.itemView.listRowLayout.setOnClickListener {
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentListItem)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {
