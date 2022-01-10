@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">NatureObserver v2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="newObservation">New Observation</string>
+    <string name="newObservationTitle">Title</string>
+    <string name="newObservationDate">Date</string>
+    <string name="newObservationLocation">Location</string>
+    <string name="newObservationNotes">Notes</string>
+    <string name="saveBtn">Save</string>
+    <string name="backBtn">Back</string>
+    <string name="savedToast">new entry saved</string>
+</resources>
