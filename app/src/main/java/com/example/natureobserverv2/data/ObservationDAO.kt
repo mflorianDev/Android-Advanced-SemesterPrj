@@ -11,6 +11,6 @@ interface ObservationDAO {
     @Insert
     suspend fun addObservation(observation: Observation)
 
-    @Query("SELECT * FROM observation_table ORDER BY date ASC")
+    @Query("SELECT * FROM observation_table ORDER BY date DESC")
     fun readAll(): LiveData<List<Observation>>
 }

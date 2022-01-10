@@ -6,6 +6,9 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.natureobserverv2.data.ObservationDatabase
+import com.example.natureobserverv2.data.ObservationRepository
+import com.example.natureobserverv2.data.repository
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,11 +16,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // initialize database
+        val observationDAO = ObservationDatabase.getDatabase(application).observationDAO()
+        // initialize repository
+        repository = ObservationRepository(observationDAO)
+
+        // setup actionbar for fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val mainNavController = navHostFragment.navController
         setupActionBarWithNavController(mainNavController)
     }
 
+    // enable back-navigation with actionbar for fragments
     override fun onSupportNavigateUp(): Boolean {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val mainNavController = navHostFragment.navController

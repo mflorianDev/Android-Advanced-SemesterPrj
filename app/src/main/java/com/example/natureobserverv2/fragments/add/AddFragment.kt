@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.natureobserverv2.R
@@ -20,7 +21,7 @@ import java.util.*
 
 class AddFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var observationViewModel: ObservationViewModel
+    private val viewModel: AddViewModel by viewModels()
     // Instantiate new Calendar for etDate-View-Element
     private var calendar = Calendar.getInstance()
     // variable dateListener (function), defined later
@@ -33,7 +34,6 @@ class AddFragment : Fragment(), View.OnClickListener {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add, container, false)
 
-        observationViewModel = ViewModelProvider(this).get(ObservationViewModel::class.java)
         view.addBtn.setOnClickListener {
             insertObservationToDatabase()
         }
@@ -66,7 +66,7 @@ class AddFragment : Fragment(), View.OnClickListener {
             // Create observation object
             val observation = Observation(0, title, date, location, notes)
             // Add observation to database
-            observationViewModel.addObservation(observation)
+            this.viewModel.addObservation(observation)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_LONG).show()
             // Navigate back
             findNavController().navigate(R.id.listFragment)
