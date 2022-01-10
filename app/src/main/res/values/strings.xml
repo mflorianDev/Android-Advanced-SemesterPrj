@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">NatureObserver v2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!-- main fragment -->
+    <string name="helloObserver">Hello Observer</string>
+    <string name="showAllObservations">Show All Observations</string>
+    <string name="showWeatherForecast">Show Weather Forecast</string>
+
+    <!-- add fragment -->
     <string name="newObservation">New Observation</string>
     <string name="newObservationTitle">Title</string>
     <string name="newObservationDate">Date</string>
@@ -11,4 +15,7 @@
     <string name="saveBtn">Save</string>
     <string name="backBtn">Back</string>
     <string name="savedToast">new entry saved</string>
+
+    <!-- weather fragment -->
+
 </resources>
