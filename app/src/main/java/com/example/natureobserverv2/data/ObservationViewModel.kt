@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 // TODO: File nicht in Verwendung! Kann gelöscht werden!
+/*
 class ObservationViewModel(application: Application): AndroidViewModel(application) {
 
     private val observations: LiveData<List<Observation>>
@@ -27,3 +28,5 @@ class ObservationViewModel(application: Application): AndroidViewModel(applicati
     }
 
 }
+
+ */

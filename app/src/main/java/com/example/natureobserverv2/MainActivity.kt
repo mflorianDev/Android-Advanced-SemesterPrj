@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.natureobserverv2.data.ObservationDatabase
 import com.example.natureobserverv2.data.ObservationRepository
 import com.example.natureobserverv2.data.repository
+import com.example.natureobserverv2.web.createWebService
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         // initialize database
         val observationDAO = ObservationDatabase.getDatabase(application).observationDAO()
+        // initialize weatherWebService
+        val weatherWebService = createWebService()
         // initialize repository
-        repository = ObservationRepository(observationDAO)
+        repository = ObservationRepository(observationDAO, weatherWebService)
+        // TODO: delete getWeatherInfo call
+        repository.getWeatherInfo()
 
         // setup actionbar for fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
