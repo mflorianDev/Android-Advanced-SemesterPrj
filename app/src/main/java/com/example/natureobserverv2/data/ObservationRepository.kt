@@ -2,6 +2,7 @@ package com.example.natureobserverv2.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.natureobserverv2.web.WeatherWebEntity
 import com.example.natureobserverv2.web.WeatherWebService
 import retrofit2.Call
@@ -13,6 +14,8 @@ lateinit var repository: ObservationRepository
 class ObservationRepository(private val observationDAO: ObservationDAO, private val weatherWebService: WeatherWebService) {
 
     val observations: LiveData<List<Observation>> = observationDAO.readAll()
+    //lateinit var weather: WeatherWebEntity
+    var weather: MutableLiveData<WeatherWebEntity> = MutableLiveData()
 
     suspend fun addObservation(observation: Observation){
         observationDAO.addObservation(observation)
@@ -30,20 +33,17 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         observationDAO.deleteAllObservations()
     }
 
-    fun getWeatherInfo(){
+    fun getWeatherInfo() {
         val geoCode = "vienna,at"
         val apiKey = "d5728be66b249b5ad501e60868036f1f"
-        weatherWebService.getWeatherInfo(geoCode, apiKey).enqueue(object: Callback<List<WeatherWebEntity>> {
-            /**
-             * Wird bei Success mit dem Ergebnis und dem Status Code gerufen.
-             * Beide Methoden werden am MainThread gerufen!
-             */
+        weatherWebService.getWeatherInfo(geoCode, apiKey).enqueue(object: Callback<WeatherWebEntity> {
             override fun onResponse(
-                call: Call<List<WeatherWebEntity>>,
-                response: Response<List<WeatherWebEntity>>
+                call: Call<WeatherWebEntity>,
+                response: Response<WeatherWebEntity>
             ) {
-                val weather = response.body()
-                Log.e("WeatherResponse: ", response.body().toString())
+                weather = MutableLiveData(response.body()!!)
+                Log.i("Response", response.toString())
+                Log.i("Response.body", response.body().toString())
                 /*
                 val contacts = response.body()
                 val databaseContacts = contacts?.map {
@@ -54,11 +54,7 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
                 }
                  */
             }
-
-            /**
-             * Wird gerufen bei Timeouts oder wenn das Parsing fehlschlägt
-             */
-            override fun onFailure(call: Call<List<WeatherWebEntity>>, t: Throwable) {
+            override fun onFailure(call: Call<WeatherWebEntity>, t: Throwable) {
                 Log.e("HTTP", "Get weather info failed", t)
             }
         }
