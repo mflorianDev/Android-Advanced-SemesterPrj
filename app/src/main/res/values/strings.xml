@@ -2,7 +2,7 @@
     <string name="app_name">NatureObserver v2</string>
 
     <!-- main fragment -->
-    <string name="helloObserver">Hello Observer</string>
+    <string name="helloObserver">Welcome</string>
     <string name="showAllObservations">Show All Observations</string>
     <string name="showWeatherForecast">Show Weather Forecast</string>
 
@@ -39,8 +39,10 @@
     <string name="listDeleteMenuTextNo">No</string>
     <string name="listDeleteObservationsConfirmationToast">Successfully deleted all observations</string>
 
-
-
     <!-- weather fragment -->
+    <string name="windSpeed">km/h</string>
+    <string name="weatherSearchFieldTitle">desired city for forecast</string>
+    <string name="weatherSearchCityName">city</string>
+    <string name="weatherSearchBtn">Show Forecast</string>
 
 </resources>

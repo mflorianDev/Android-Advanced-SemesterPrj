@@ -29,6 +29,9 @@ class MainFragment : Fragment() {
         view.showAllObservationsBtn.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_listFragment)
         }
+        view.showWeatherBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_weatherFragment)
+        }
 
         return view
     }

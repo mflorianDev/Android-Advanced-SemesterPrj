@@ -25,12 +25,6 @@ class MainActivity : AppCompatActivity() {
         val weatherWebService = createWebService()
         // initialize repository
         repository = ObservationRepository(observationDAO, weatherWebService)
-        // TODO: delete getWeatherInfo call
-        repository.getWeatherInfo()
-        repository.weather.observe(this){
-            Log.e("Observed Weather: ", it.toString())
-        }
-
         // setup actionbar for fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val mainNavController = navHostFragment.navController

@@ -38,8 +38,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/helloObserver"
-                android:textColor="#363A43"
-                android:textSize="26sp"
+                android:textColor="@color/grey2"
+                android:textSize="22sp"
                 android:textStyle="bold">
             </TextView>
 
