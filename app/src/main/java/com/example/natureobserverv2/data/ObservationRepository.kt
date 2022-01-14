@@ -1,15 +1,10 @@
 package com.example.natureobserverv2.data
 
-import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.natureobserverv2.web.ErrorWeatherWebEntity
-import com.example.natureobserverv2.web.WeatherWebEntity
-import com.example.natureobserverv2.web.WeatherWebService
-import okhttp3.ResponseBody
+import com.example.natureobserverv2.web.*
 import retrofit2.*
-import retrofit2.converter.jackson.JacksonConverterFactory
 
 lateinit var repository: ObservationRepository
 
@@ -34,6 +29,7 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         observationDAO.deleteAllObservations()
     }
 
+
     fun getWeatherInfo( city: String) {
         val geoCode = city
         //val geoCode = "vienna,at"
@@ -45,12 +41,13 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
             ) {
                 Log.i("Response", response.toString())
                 if (response.isSuccessful){
-                    weather = MutableLiveData(response.body())
+                    //weather = MutableLiveData(response.body())
+                    // to keep all observers alive actualise MutableLiveData with .postValue()!!
+                    weather.postValue(response.body())
                     Log.i("Response.body", response.body().toString())
                 } else {
                     // statusCode: 401 -> invalid APIkey
                     // statusCode: 404 -> city not found
-                    weather = MutableLiveData()
                     Log.e("WeatherWebService-Request-Error", response.raw().toString())
                     Log.e("Response.body", response.body().toString())
                 }
@@ -61,4 +58,5 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         }
         )
     }
+
 }

@@ -7,7 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.natureobserverv2.R
 import com.example.natureobserverv2.data.repository
@@ -36,19 +41,21 @@ class WeatherFragment : Fragment() {
         view.showForecastBtn.setOnClickListener {
             val city = etWeatherLocation.text.toString()
             // run weatherWebService to get actual weather info
-            viewModel.getWeatherInfo("vienna")
+            viewModel.getWeatherInfo(city)
         }
 
         // Read out forecast data from weather-webservice-call
         viewModel.weather().observe(viewLifecycleOwner){
+            Log.e("INFO", "Observer was invoked")
             if (it == null) {
                 Toast.makeText(requireContext(), "Weather Request Status >= 400", Toast.LENGTH_LONG).show()
             } else {
                 Log.e("it", it.toString())
-                tvWeather.text = it.toString()
+                view.tvWeather.text = it.name
             }
             //tvWeather.text = it?.toString() ?: "Weather Request Status >= 400"
         }
+
         return view
     }
 

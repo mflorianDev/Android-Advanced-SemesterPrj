@@ -1,5 +1,6 @@
 package com.example.natureobserverv2.fragments.weather
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +14,8 @@ class WeatherViewModel: ViewModel() {
     fun weather(): MutableLiveData<WeatherWebEntity> = repository.weather
 
     fun getWeatherInfo(city: String){
-            repository.getWeatherInfo(city)
+        Log.e("getWeather from viewModel", "")
+        repository.getWeatherInfo(city)
     }
 
     override fun onCleared() {

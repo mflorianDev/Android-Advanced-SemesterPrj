@@ -62,4 +62,9 @@
             android:id="@+id/action_weatherFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.example.natureobserverv2.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
 </navigation>
