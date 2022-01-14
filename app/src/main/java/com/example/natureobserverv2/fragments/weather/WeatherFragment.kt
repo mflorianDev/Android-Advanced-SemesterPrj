@@ -1,5 +1,6 @@
 package com.example.natureobserverv2.fragments.weather
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,10 +18,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.natureobserverv2.R
 import com.example.natureobserverv2.data.repository
 import com.example.natureobserverv2.fragments.update.UpdateViewModel
+import com.example.natureobserverv2.web.WeatherWebEntity
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import kotlinx.android.synthetic.main.fragment_weather.*
 import kotlinx.android.synthetic.main.fragment_weather.view.*
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.roundToInt
 
 
 class WeatherFragment : Fragment() {
@@ -52,11 +57,34 @@ class WeatherFragment : Fragment() {
             } else {
                 Log.e("it", it.toString())
                 view.tvWeather.text = it.name
+                //Set UI values
+                setUiValues(it)
             }
-            //tvWeather.text = it?.toString() ?: "Weather Request Status >= 400"
         }
 
         return view
+    }
+
+    private fun setUiValues(weatherInfo: WeatherWebEntity){
+        tv_pressure.text = weatherInfo.main.pressure.toString() + " hPa"
+        tv_main_description.text = weatherInfo.weather[0].description
+        tv_temp.text = weatherInfo.main.temp.toString() + "°C"
+        tv_humidity.text = weatherInfo.main.humidity.toString() + " %"
+        tv_min.text = weatherInfo.main.tempMin.toString() + " min"
+        tv_max.text = weatherInfo.main.tempMax.toString() + " max"
+        tv_speed.text = (weatherInfo.wind.speed * 3.6).roundToInt().toString()
+        tv_speed_unit.text = "km/h"
+        tv_name.text = weatherInfo.name
+        tv_country.text = weatherInfo.sys.country
+        tv_sunrise_time.text = unixTime(weatherInfo.sys.sunrise.toLong())
+        tv_sunset_time.text = unixTime(weatherInfo.sys.sunset.toLong())
+    }
+
+    private fun unixTime(timex: Long): String? {
+        val date = Date(timex * 1000L)
+        val sdf = SimpleDateFormat("HH:mm")
+        sdf.timeZone = TimeZone.getDefault()
+        return sdf.format(date)
     }
 
 

@@ -32,9 +32,10 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
 
     fun getWeatherInfo( city: String) {
         val geoCode = city
-        //val geoCode = "vienna,at"
+        val units = "metric"
+        val lang = "de"
         val apiKey = "d5728be66b249b5ad501e60868036f1f"
-        weatherWebService.getWeatherInfo(geoCode, apiKey).enqueue(object: Callback<WeatherWebEntity> {
+        weatherWebService.getWeatherInfo(geoCode, units, lang, apiKey).enqueue(object: Callback<WeatherWebEntity> {
             override fun onResponse(
                 call: Call<WeatherWebEntity>,
                 response: Response<WeatherWebEntity>

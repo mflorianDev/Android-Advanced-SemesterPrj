@@ -12,9 +12,15 @@ import java.util.concurrent.TimeUnit
 interface WeatherWebService {
     @GET("data/2.5/weather/")
     fun getWeatherInfo(
-        // geoCode: {city name},{state code},{country code} -> optional: state code & country code
-        // set encoded to true so comma will not get unicoded to hex value in url
+        // required: {city name}, optional: {state code}, {country code}
+        // if more than 1 string set encoded to true so comma will not get unicoded to hex value in url
+        // geoCode example: lincoln,ne,us -> Lincoln, Nebraska, US
         @Query("q", encoded = true) geoCode: String,
+        // optional: standard || metric || imperial
+        @Query("units") units: String,
+        // optional, for example: en -> English, de -> German
+        @Query("lang") lang: String,
+        // required
         @Query("appid") apiKey: String
     ): Call<WeatherWebEntity>
 

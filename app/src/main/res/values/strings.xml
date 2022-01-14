@@ -40,11 +40,8 @@
     <string name="listDeleteObservationsConfirmationToast">Successfully deleted all observations</string>
 
     <!-- weather fragment -->
-    <string name="windSpeed">km/h</string>
-    <string name="weatherSearchFieldTitle">desired city for forecast</string>
+    <string name="weatherSearchFieldTitle">Enter Location</string>
     <string name="weatherSearchCityName">city</string>
-    <string name="weatherSearchBtn">Show Forecast</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="weatherSearchBtn">Show</string>
 
 </resources>
