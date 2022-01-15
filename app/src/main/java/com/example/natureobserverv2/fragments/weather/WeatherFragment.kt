@@ -52,13 +52,25 @@ class WeatherFragment : Fragment() {
         // Read out forecast data from weather-webservice-call
         viewModel.weather().observe(viewLifecycleOwner){
             Log.e("INFO", "Observer was invoked")
-            if (it == null) {
+            if ( false) {
                 Toast.makeText(requireContext(), "Weather Request Status >= 400", Toast.LENGTH_LONG).show()
             } else {
                 Log.e("it", it.toString())
-                view.tvWeather.text = it.name
                 //Set UI values
                 setUiValues(it)
+            }
+        }
+
+        // Read out errorcode from weather-webservice-call if call successfull but not parseable to WeatherWebEntity (statuscode >= 300)
+        viewModel.weatherError().observe(viewLifecycleOwner){
+            if (it == 0) {
+                // Do nothing. 0 corresponds ot initialized value.
+            } else if (it == 401){
+                Toast.makeText(requireContext(), "Invalid APIkey for request!", Toast.LENGTH_LONG).show()
+            } else if (it == 404){
+                Toast.makeText(requireContext(), "City not found!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(requireContext(), "Error on request!", Toast.LENGTH_LONG).show()
             }
         }
 
@@ -78,6 +90,23 @@ class WeatherFragment : Fragment() {
         tv_country.text = weatherInfo.sys.country
         tv_sunrise_time.text = unixTime(weatherInfo.sys.sunrise.toLong())
         tv_sunset_time.text = unixTime(weatherInfo.sys.sunset.toLong())
+
+        when (weatherInfo.weather[0].icon) {
+            "01d" -> iv_main.setImageResource(R.drawable.sunny)
+            "02d" -> iv_main.setImageResource(R.drawable.cloud)
+            "03d" -> iv_main.setImageResource(R.drawable.cloud)
+            "04d" -> iv_main.setImageResource(R.drawable.cloud)
+            "04n" -> iv_main.setImageResource(R.drawable.cloud)
+            "10d" -> iv_main.setImageResource(R.drawable.rain)
+            "11d" -> iv_main.setImageResource(R.drawable.storm)
+            "13d" -> iv_main.setImageResource(R.drawable.snowflake)
+            "01n" -> iv_main.setImageResource(R.drawable.cloud)
+            "02n" -> iv_main.setImageResource(R.drawable.cloud)
+            "03n" -> iv_main.setImageResource(R.drawable.cloud)
+            "10n" -> iv_main.setImageResource(R.drawable.cloud)
+            "11n" -> iv_main.setImageResource(R.drawable.rain)
+            "13n" -> iv_main.setImageResource(R.drawable.snowflake)
+        }
     }
 
     private fun unixTime(timex: Long): String? {

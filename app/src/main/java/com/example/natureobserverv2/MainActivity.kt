@@ -29,10 +29,8 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val mainNavController = navHostFragment.navController
         setupActionBarWithNavController(mainNavController)
+        // initialize weather variable with WeatherWebEntity -> not null anymore
         repository.getWeatherInfo("vienna")
-        repository.getWeatherInfo("cologne")
-
-
     }
 
     // enable back-navigation with actionbar for fragments

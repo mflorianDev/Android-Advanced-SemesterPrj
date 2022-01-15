@@ -12,6 +12,7 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
 
     val observations: LiveData<List<Observation>> = observationDAO.readAll()
     var weather: MutableLiveData<WeatherWebEntity> = MutableLiveData()
+    var weatherError: MutableLiveData<Int> = MutableLiveData(0)
 
     suspend fun addObservation(observation: Observation){
         observationDAO.addObservation(observation)
@@ -41,12 +42,14 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
                 response: Response<WeatherWebEntity>
             ) {
                 Log.i("Response", response.toString())
+                // check if statuscode in range 200-299
                 if (response.isSuccessful){
                     //weather = MutableLiveData(response.body())
                     // to keep all observers alive actualise MutableLiveData with .postValue()!!
                     weather.postValue(response.body())
                     Log.i("Response.body", response.body().toString())
                 } else {
+                    weatherError.postValue(response.code())
                     // statusCode: 401 -> invalid APIkey
                     // statusCode: 404 -> city not found
                     Log.e("WeatherWebService-Request-Error", response.raw().toString())

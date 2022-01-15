@@ -8,17 +8,11 @@
     android:background="@color/green2"
     tools:context=".fragments.weather.WeatherFragment">
 
-    <TextView
-        android:id="@+id/tvWeather"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="TextView" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/card_view_marginTop">
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -337,12 +331,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/newObservationCardView"
+        android:id="@+id/cvSearchWeatherLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/card_view_marginStartEnd"
         android:layout_marginTop="@dimen/card_view_marginTop"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="@dimen/card_view_marginStartEnd"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp">
@@ -364,23 +358,19 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:layout_margin="0dp"
-                        android:padding="0dp"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/etWeatherLocation"
                             android:layout_width="match_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_margin="0dp"
-                            android:padding="0dp"
+                            android:layout_height="match_parent"
                             android:hint="@string/weatherSearchCityName"
                             android:textColor="#363A43"
                             android:inputType="text"/>
@@ -391,8 +381,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
                     android:text="@string/weatherSearchBtn"
                     android:textColor="@color/white"
                     android:textSize="14sp" />

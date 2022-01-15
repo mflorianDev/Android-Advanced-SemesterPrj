@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 
 class WeatherViewModel: ViewModel() {
 
+    fun weatherError(): MutableLiveData<Int> = repository.weatherError
+
     fun weather(): MutableLiveData<WeatherWebEntity> = repository.weather
 
     fun getWeatherInfo(city: String){

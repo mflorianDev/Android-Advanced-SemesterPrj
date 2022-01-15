@@ -67,4 +67,7 @@ dependencies {
 
     // Bindet Retrofit und Jackson als Converter ein
     implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
+
+    // Bindet Jackson als eigenstaendiges Modul ein
+    //implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.12.1'
 }
