@@ -383,6 +383,7 @@
                     android:layout_weight="1"
                     android:text="@string/weatherSearchBtn"
                     android:textColor="@color/white"
+                    android:backgroundTint="@color/green1"
                     android:textSize="14sp" />
 
             </LinearLayout>
