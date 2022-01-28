@@ -27,7 +27,7 @@ interface ObservationDAO {
     @Query("DELETE FROM observation_table")
     suspend fun deleteAllObservations()
 
-    // CHECK IF EMPTY -> response mit fragezeichen damit null zurückgegeben werden kann
+    // CHECK IF EMPTY
     @Query("SELECT * FROM observation_table LIMIT 1")
     fun anyData(): Observation?
 

@@ -23,13 +23,6 @@ interface WeatherWebService {
         // required
         @Query("appid") apiKey: String
     ): Call<WeatherWebEntity>
-
-    //fun qString(q: List<String>) = q.joinToString(",")
-
-    /**
-     * Eventuelle andere Requests auch direkt in dieser Klasse definieren.
-     * Die Basis URL ist für alle Requests die gleiche!
-     */
 }
 
 fun createWebService(): WeatherWebService {

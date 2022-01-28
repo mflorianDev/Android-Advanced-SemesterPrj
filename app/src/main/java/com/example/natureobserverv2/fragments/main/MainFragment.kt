@@ -18,9 +18,6 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO: delete next 2 lines
-        // call viewModel only for reason to get instance
-        //viewModel.logInstantiation()
     }
 
     override fun onCreateView(

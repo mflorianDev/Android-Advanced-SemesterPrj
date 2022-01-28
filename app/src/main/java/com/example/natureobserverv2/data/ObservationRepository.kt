@@ -39,8 +39,7 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         Log.e("isDbEmpty: ", anyData.toString())
         return anyData
     }
-
-
+    
     fun getWeatherInfo( city: String) {
         val geoCode = city
         val units = "metric"
@@ -75,8 +74,6 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         }
         )
     }
-
-
 
     // Create observation-objects and return observationTestArray
     fun getObservationTestArray(): ArrayList<Observation>{
