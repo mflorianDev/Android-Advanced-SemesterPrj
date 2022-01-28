@@ -10,14 +10,14 @@ import kotlinx.coroutines.launch
 
 class MainViewModel: ViewModel() {
 
-    // TODO: not working -> kotlin.UninitializedPropertyAccessException: lateinit property repository has not been initialized
-    /*
     init {
+        /*
         if (isDbEmpty()){
             loadObservationTestArray()
         }
+         */
     }
-
+    /*
     // check if database is already populated
     fun isDbEmpty(){
         // create background thread (coroutine)
@@ -41,6 +41,9 @@ class MainViewModel: ViewModel() {
         }
     }
      */
+    fun logInstantiation(){
+        Log.i("MainViewModel: ", "instantiated")
+    }
 
     override fun onCleared() {
         super.onCleared()

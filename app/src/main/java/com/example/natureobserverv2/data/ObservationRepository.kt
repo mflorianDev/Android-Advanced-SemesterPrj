@@ -4,6 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.natureobserverv2.web.*
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.util.ClassUtil
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import retrofit2.*
 
 lateinit var repository: ObservationRepository
@@ -30,8 +34,10 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
         observationDAO.deleteAllObservations()
     }
 
-    fun anyData(){
-        observationDAO.anyData()
+    fun anyData(): Observation? {
+        val anyData = observationDAO.anyData()
+        Log.e("isDbEmpty: ", anyData.toString())
+        return anyData
     }
 
 
@@ -52,12 +58,15 @@ class ObservationRepository(private val observationDAO: ObservationDAO, private 
                     weather.postValue(response.body())
                     Log.i("Response.body", response.body().toString())
                 } else {
-                    // TODO: if solution available reparse response to ErrorWeatherWebEntity
                     weatherError.postValue(response.code())
                     // statusCode: 401 -> invalid APIkey
                     // statusCode: 404 -> city not found
                     Log.e("WeatherWebService-Request-Error", response.raw().toString())
                     Log.e("Response.body", response.body().toString())
+
+                    // Reparse response to ErrorWeatherWebEntity -> never used!
+                    val mapper = jacksonObjectMapper()
+                    val errorwebentity = mapper.readValue<ErrorWeatherWebEntity>(response.body().toString())
                 }
             }
             override fun onFailure(call: Call<WeatherWebEntity>, t: Throwable) {

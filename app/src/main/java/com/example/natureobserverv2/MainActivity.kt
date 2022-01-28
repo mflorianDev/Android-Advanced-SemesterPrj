@@ -31,19 +31,19 @@ class MainActivity : AppCompatActivity() {
         val weatherWebService = createWebService()
         // initialize repository
         repository = ObservationRepository(observationDAO, weatherWebService)
-        // load ObservationTestArray to Database
-        val observationTestArray = repository.getObservationTestArray()
-        // TODO: delete after implementation in mainviewmodel
-        for (observation in observationTestArray){
-            // create background thread (coroutine)
-            lifecycleScope.launch(Dispatchers.IO) {
-                repository.addObservation(observation)
+        // load ObservationTestArray to Database when no entries yet
+        lifecycleScope.launch(Dispatchers.IO){
+            if (repository.anyData() == null){
+                val observationTestArray = repository.getObservationTestArray()
+                for (observation in observationTestArray){
+                        repository.addObservation(observation)
+                }
             }
         }
-
         // setup actionbar for fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val mainNavController = navHostFragment.navController
+        // TODO: Farbe Actionbar in Theme ändern
         setupActionBarWithNavController(mainNavController)
         // TODO: better to initialize with self-created instance (dummy)
         // initialize weather variable with WeatherWebEntity -> not null anymore
